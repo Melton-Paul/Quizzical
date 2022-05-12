@@ -16,6 +16,7 @@ body {
   font-size: 1.2rem;
   line-height: 1.8;
   color: #293264;
+  height: 100vh;
 }
 h1,
 h2,
@@ -96,4 +97,21 @@ h2 {
   border-radius: 15px;
   font-size: 1.6rem;
   margin-top: 1rem;
+}
+/* Question Block */
+.questions__container {
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.question--answers .answer {
+  margin: 0 1.5rem;
+}
+.answer:first-of-type {
+  margin-left: 0;
+}
+
+.question hr {
+  margin-top: 2rem;
 }
