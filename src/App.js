@@ -51,7 +51,7 @@ export default function App(){
         {questionsHtml}
       <button type="button" className="btn btn--secondary" onClick={finishQuiz}>Submit Answers</button>
       </form>
-      {quizOver && <div>{points}/5</div> }
+      {quizOver && <div>You scored {points} points out of 5 points!</div> }
     </div>
   )
 }
