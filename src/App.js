@@ -16,10 +16,18 @@ export default function App(){
     fetch("https://opentdb.com/api.php?amount=5&type=multiple")
     .then(res => res.json())
     .then(data => {
-      setQuestions(data.results)
+      console.log(data.results)
+      let fixedIncorrect
+      const fixedHtml = data.results.map(item => {
+        fixedIncorrect = item.incorrect_answers.map(answer => {
+          return  decodeHtml(answer)
+        })
+        return {...item, question: decodeHtml(item.question), correct_answer: decodeHtml(item.correct_answer), incorrect_answers: fixedIncorrect}
+      })
+      setQuestions(fixedHtml)
     })
-  }, [])
-  
+  }, [quizStarted])
+
   function startQuiz(){
     setQuizStarted(true)
   }
@@ -29,8 +37,13 @@ export default function App(){
     setQuizOver(true)} 
   }
 
+  function decodeHtml(html) {
+    const txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+}
 
-  
+ 
   
   const questionsHtml = questions.map(item => {
     const answersArr= [...item.incorrect_answers, item.correct_answer]
@@ -50,7 +63,8 @@ export default function App(){
       <form className="questions__container">
         <h1>Quizzical</h1>
         {questionsHtml}
-      <button type="button" className="btn btn--secondary submit" onClick={finishQuiz}>Submit Answers</button>
+      {!quizOver ? <button type="button" className="btn btn--secondary submit" onClick={finishQuiz}>Submit Answers</button>: 
+      <button type="button" className="btn btn--secondary submit" onClick={()=>window.location.reload()}>Try Again</button>}
       {quizOver && <div className="score">You scored {points} points out of 5 points!</div> }
       </form>}
     </div>

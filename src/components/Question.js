@@ -25,7 +25,6 @@ export default function Question(props){
         const ans = selected[0].answer[0]
         const points = ans === props.correct ? 1 : 0 
         props.setPoints(prev => prev + points)
-    
     }
     }, [props.quizOver])
 
