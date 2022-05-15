@@ -26,7 +26,7 @@ export default function App(){
       })
       setQuestions(fixedHtml)
     })
-  }, [quizStarted])
+  }, [])
 
   function startQuiz(){
     setQuizStarted(true)
