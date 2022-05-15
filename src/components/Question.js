@@ -25,7 +25,6 @@ export default function Question(props){
         const ans = selected[0].answer[0]
         const points = ans === props.correct ? 1 : 0 
         props.setPoints(prev => prev + points)
-    
     }
     }, [props.quizOver])
 
@@ -36,7 +35,8 @@ export default function Question(props){
         if (props.quizOver){
             if(item.clicked){
                 styles = {
-                    backgroundColor: item.answer[0] != props.correct ? "pink" : "lightgreen",
+                    backgroundColor: item.answer[0] != props.correct ? "maroon" : "green",
+                    color: item.answer[0] != props.correct ? "white" : "white"
             }} else {
             if(item.answer[0] === props.correct)
                 styles = {
