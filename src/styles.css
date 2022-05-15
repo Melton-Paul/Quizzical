@@ -104,6 +104,9 @@ h2 {
   font-size: 1.6rem;
   margin-top: 1rem;
 }
+.submit {
+  padding: 1rem;
+}
 
 /* Question Block */
 
@@ -111,6 +114,13 @@ h2 {
   max-width: 700px;
   width: 100%;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.questions__container .submit,
+.score {
+  align-self: center;
+  margin-top: 1rem;
 }
 
 .question--answers {
@@ -124,6 +134,9 @@ h2 {
 
 .question hr {
   margin-top: 2rem;
+}
+.question {
+  margin: 2rem 0;
 }
 
 .answer {

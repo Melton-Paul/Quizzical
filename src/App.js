@@ -1,29 +1,16 @@
 import React from "react"
 import Start from "./components/Start"
 import Question from "./components/Question"
+import blob1 from "./images/blob1.png"
+import blob2 from "./images/blob2.png"
 
 
 export default function App(){
   const [quizStarted, setQuizStarted] = React.useState(false)
   const [questions, setQuestions] = React.useState([])
   const [quizOver, setQuizOver] = React.useState(false)
+  const [answeredQuestions, setAnsweredQuestions] = React.useState(0)
   const [points, setPoints] = React.useState(0)
-  function startQuiz(){
-    setQuizStarted(true)
-  }
-
-  function finishQuiz(){
-    setQuizOver(true)
-    console.log("clicked")
-
-  }
-
-
-  // function checkAnswers(point){
-  //   setPoints
-  // }
-
-
   
   React.useEffect(()=> {
     fetch("https://opentdb.com/api.php?amount=5&type=multiple")
@@ -33,6 +20,17 @@ export default function App(){
     })
   }, [])
   
+  function startQuiz(){
+    setQuizStarted(true)
+  }
+
+  function finishQuiz(){
+    if(answeredQuestions === 5){
+    setQuizOver(true)} 
+  }
+
+
+  
   
   const questionsHtml = questions.map(item => {
     const answersArr= [...item.incorrect_answers, item.correct_answer]
@@ -41,17 +39,20 @@ export default function App(){
         const answer = answersArr.splice(Math.floor(Math.random()*answersArr.length), 1)
         randomizedArr.push({answer: answer, clicked: false, id: i})
       } 
-    return <Question question={item.question} quizOver={quizOver} randomizedArr={randomizedArr} correct={item.correct_answer} setPoints={setPoints}  id={"question" + questions.indexOf(item)}  />
+    return <Question question={item.question} quizOver={quizOver} randomizedArr={randomizedArr} correct={item.correct_answer} setPoints={setPoints} setAnsweredQuestions={setAnsweredQuestions}  id={"question" + questions.indexOf(item)} key={questions.indexOf(item)}  />
   })
 
   return (
     <div className="container">
-      {!quizStarted && <Start startQuiz={startQuiz} />}
+      <img className="start--top-img" src={blob1} alt="" />
+      <img className="start--bottom-img" src={blob2} alt=""/>
+      {!quizStarted ? <Start startQuiz={startQuiz} /> : 
       <form className="questions__container">
+        <h1>Quizzical</h1>
         {questionsHtml}
-      <button type="button" className="btn btn--secondary" onClick={finishQuiz}>Submit Answers</button>
-      </form>
-      {quizOver && <div>You scored {points} points out of 5 points!</div> }
+      <button type="button" className="btn btn--secondary submit" onClick={finishQuiz}>Submit Answers</button>
+      {quizOver && <div className="score">You scored {points} points out of 5 points!</div> }
+      </form>}
     </div>
   )
 }
