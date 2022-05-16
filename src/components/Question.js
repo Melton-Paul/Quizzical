@@ -35,9 +35,12 @@ export default function Question(props){
         if (props.quizOver){
             if(item.clicked){
                 styles = {
-                    backgroundColor: item.answer[0] != props.correct ? "maroon" : "green",
-                    color: "white"
+                    backgroundColor: item.answer[0] != props.correct ? "pink" : "#1BE46F",
+                    opacity: item.answer[0] != props.correct ? .7 : .9
             }} else {
+                styles = {
+                    opacity: .7
+                }
             if(item.answer[0] === props.correct)
                 styles = {
                     backgroundColor: "lightgreen"
