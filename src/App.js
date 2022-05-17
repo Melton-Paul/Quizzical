@@ -61,7 +61,10 @@ export default function App(){
       <img className="start--bottom-img" src={blob2} alt=""/>
       {!quizStarted ? <Start startQuiz={startQuiz} /> : 
       <form className="questions__container">
-        <h1>Quizzical</h1>
+        <div className="title">
+          <h1>Quizzical</h1>
+          <div className="title--line"></div>
+        </div>
         {questionsHtml}
       {!quizOver ? <button type="button" className="btn btn--secondary submit" onClick={finishQuiz}>Submit Answers</button>: 
       <button type="button" className="btn btn--secondary submit" onClick={()=>window.location.reload()}>Try Again</button>}
