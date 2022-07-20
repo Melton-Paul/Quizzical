@@ -14,8 +14,8 @@ export default function App() {
   return (
     <div className="container">
       <img className="start--top-img" src={blob1} alt="" />
-      <img className="start--bottom-img" src={blob2} alt="" />
       {!quizStarted ? <Start startQuiz={startQuiz} /> : <Questions />}
+      <img className="start--bottom-img" src={blob2} alt="" />
     </div>
   );
 }

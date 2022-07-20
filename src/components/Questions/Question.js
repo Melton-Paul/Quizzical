@@ -18,16 +18,11 @@ export default function Question(props) {
     }
   }, [incorrect_answers, correct_answer]);
 
-  console.log(answers);
-
   function handleChange(e) {
     setAnswer(e.target.value);
   }
 
-  useEffect(() => {
-    if (!quizOver) {
-      return;
-    }
+  function getResults() {
     if (!answer) {
       return;
     }
@@ -36,7 +31,11 @@ export default function Question(props) {
     if (ans === correct) {
       setPoints((prev) => (prev = prev + 1));
     }
-  }, [quizOver, answers, correct, setPoints, answer]);
+  }
+
+  if (quizOver) {
+    getResults();
+  }
 
   const answerHtml = answers.map((item) => {
     let styles;
