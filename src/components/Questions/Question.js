@@ -53,17 +53,16 @@ export default function Question(props) {
       };
     }
     return (
-      <label
-        className="answer"
-        style={styles}
-        key={item.id}
-        onChange={
-          props.quizOver === false ? () => handleChange(item.id) : () => {}
-        }
-      >
-        {" "}
-        <input type="radio" className="btn btn--primary" name={props.id} />{" "}
-        {item.answer}{" "}
+      <label className="answer" style={styles} key={item.id}>
+        <input
+          type="radio"
+          className="btn btn--primary"
+          name={props.id}
+          onChange={
+            props.quizOver === false ? () => handleChange(item.id) : () => {}
+          }
+        />
+        {item.answer}
       </label>
     );
   });
