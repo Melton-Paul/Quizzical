@@ -1,5 +1,6 @@
 import React from "react";
 import Question from "./Question";
+import loadingBar from "../../images/loading-bar.gif";
 
 function decodeHtml(html) {
   const txt = document.createElement("textarea");
@@ -32,8 +33,10 @@ export default function Questions(props) {
           };
         });
         setQuestions(fixedHtml);
-        setIsLoading(false);
       });
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 750);
   }, [quizReset]);
 
   React.useEffect(() => {
@@ -99,7 +102,7 @@ export default function Questions(props) {
           )}
         </form>
       ) : (
-        <p>loading</p>
+        <img id="loading" src={loadingBar} alt="Loading" />
       )}
     </>
   );

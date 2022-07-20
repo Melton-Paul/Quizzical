@@ -157,6 +157,14 @@ h2 {
   margin: 1rem 0;
 }
 
+#loading {
+  position: absolute;
+  top: 40%;
+  right: 50%;
+  transform: translateX(50%);
+  width: 300px;
+}
+
 .answer {
   color: #293264;
   background: white;
